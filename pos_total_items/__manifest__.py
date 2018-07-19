@@ -3,7 +3,7 @@
     'name': 'POS Total Items in Cart',
     'version': '1.0',
     'price' : '4.99',
-    'currency': 'EUR',
+    'currency': 'USD',
     'summary': 'POS Total Items in Cart',
     'description': """
 POS Total Items in Cart
