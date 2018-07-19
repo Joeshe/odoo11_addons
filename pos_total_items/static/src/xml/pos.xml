@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend='OrderWidget'>
+        <t t-jquery='.summary' t-operation='replace'>
+            <div class="summary clearfix">
+                <div class="line">
+                    <div class='entry total'>
+                        <span class="label">Total: </span> <span class="value">0.00 €</span>
+                        <div class='subentry'>Taxes: <span class="value">0.00€</span></div>
+                        <div class='subentry1'>Total Cart Items: <span class="value">0</span></div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+
+    <t t-extend="PosTicket">
+        <t t-jquery="t[t-foreach*='paymentlines'][t-as*='line']" t-operation="append">
+            <tr>
+                <td colspan="2">
+                    <t t-if="line.mercury_data">
+                        &amp;nbsp;&amp;nbsp;APPROVAL CODE: <t t-esc="line.mercury_auth_code"/>
+                    </t>
+                </td>
+            </tr>
+        </t>
+        <t t-jquery="t[t-if*='receipt.footer']" t-operation="before">
+            <div class="summary clearfix">
+                <t t-if="order.get_total_items() > 0">
+                    <td>Total Cart Items:</td>
+                    <td class="pos-right-align">
+                        <t t-esc="order.get_total_items()"/>
+                    </td>
+                </t>
+            </div>
+        </t>
+    </t>
+</templates>
